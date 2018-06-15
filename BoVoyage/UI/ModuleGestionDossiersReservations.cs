@@ -71,11 +71,14 @@ namespace BoVoyage.UI
         {
             ConsoleHelper.AfficherEntete("Nouvelle réservation");
 
-            var reservation = new DossierReservation
-            {              
-               NumeroUnique  = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro client : ")),           
-               PrixTotal = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le prix Total : ")),
-               NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro de la carte bancaire du client : "),           
+            var reservation = new DossierReservation { };
+            {
+                reservation.IdVoyage = ConsoleSaisie.SaisirEntierObligatoire("IdVoyage :");
+                reservation.IdParticipant = ConsoleSaisie.SaisirEntierObligatoire("IdParticipant :");
+                reservation.IdClient = ConsoleSaisie.SaisirEntierObligatoire("IdClient :");
+                reservation.NumeroUnique = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro client : "));
+                reservation.PrixTotal = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le prix Total : "));
+                reservation.NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro de la carte bancaire du client : ");          
 
             };
 

@@ -75,7 +75,7 @@ namespace BoVoyage.UI
 
             var client = new Client
             {
-                Civilite = ConsoleSaisie.SaisirChaineObligatoire("Entrez votre civilité : "),
+                Civilite = ConsoleSaisie.SaisirChaineObligatoire("Entrez la civilité du client : "),
                 Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : "),
                 Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : "),
                 Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : "),
@@ -137,7 +137,37 @@ namespace BoVoyage.UI
 
         private void ModifierClient()
         {
+            ConsoleHelper.AfficherEntete("Modifier données client");
 
+            var nom = ConsoleSaisie.SaisirChaineObligatoire("Nom du client :");
+
+            using (var recherche = Application.GetBaseDonnees())
+
+            {
+                var liste = recherche.Clients.Where(x => x.Nom.Contains(nom));
+                ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
+
+                var client = new Client
+                {
+                    Civilite = ConsoleSaisie.SaisirChaineObligatoire("Entrez votre civilité : "),
+                    Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : "),
+                    Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : "),
+                    Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : "),
+                    Telephone = ConsoleSaisie.SaisirChaineObligatoire("Telephone : "),
+                    DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : "),
+                    Age = ConsoleSaisie.SaisirEntierObligatoire("Age : "),
+                    Email = ConsoleSaisie.SaisirChaineObligatoire("Email : ")
+
+                };
+
+                using (var bd = Application.GetBaseDonnees())
+                {
+                    bd.Clients.Add(client);
+                    bd.SaveChanges();
+                }
+
+            }
+       
         }
     }
 }
