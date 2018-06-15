@@ -10,17 +10,17 @@ namespace BoVoyage.UI
 {
     public class ModuleGestionClients
     {
-        private static readonly List<InformationAffichage> strategieAffichageGestionDossiersClients =
+        private static readonly List<InformationAffichage> strategieAffichageGestionClients =
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
                 InformationAffichage.Creer<Client>(x=>x.Civilite, "Civilite", 4),
                 InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 20),
                 InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 20),
-                InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 50),
+                InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 30),
                 InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 10),
-                InformationAffichage.Creer<Client>(x=>x.Email, "Email", 50),
-                InformationAffichage.Creer<Client>(x=>x.DateNaissance, "DateNaissance", 10),
+                InformationAffichage.Creer<Client>(x=>x.Email, "Email", 30),
+                InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date de Naissance", 10),
                 InformationAffichage.Creer<Client>(x=>x.Age, "Age", 3),
             };
 
@@ -36,17 +36,17 @@ namespace BoVoyage.UI
             {
                 FonctionAExecuter = this.AjouterClient
             });
-            this.menu.AjouterElement(new ElementMenu("3", "Modifier un client")
-            {
-                FonctionAExecuter = this.ModifierClient
-            });
-            this.menu.AjouterElement(new ElementMenu("4", "Supprimer un client")
+            this.menu.AjouterElement(new ElementMenu("3", "Supprimer un client")
             {
                 FonctionAExecuter = this.SupprimerClient
             });
-            this.menu.AjouterElement(new ElementMenu("5", "Rechercher un client")
+            this.menu.AjouterElement(new ElementMenu("4", "Rechercher un client")
             {
                 FonctionAExecuter = this.RechercherClient
+            });
+            this.menu.AjouterElement(new ElementMenu("5", "Modifier un client")
+            {
+                FonctionAExecuter = this.ModifierClient
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal"));
         }
@@ -66,7 +66,7 @@ namespace BoVoyage.UI
             ConsoleHelper.AfficherEntete("Clients");
 
             var liste = Application.GetBaseDonnees().Clients.ToList();
-            ConsoleHelper.AfficherListe(liste, strategieAffichageGestionDossiersClients);
+            ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
         }
 
         public void AjouterClient()
@@ -117,7 +117,9 @@ namespace BoVoyage.UI
             using (var recherche = Application.GetBaseDonnees())
             {
                 var liste = recherche.Clients.Where(x => x.Nom.Contains(nom));
+                ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
             }
+
         }
 
         private void ModifierClient()
