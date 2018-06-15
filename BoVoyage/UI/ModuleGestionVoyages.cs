@@ -130,13 +130,10 @@ namespace BoVoyage.UI
 
             using (var recherche = Application.GetBaseDonnees())
             {
-                var liste = recherche.Destinations.Where(x => x.Continent.Contains(destination));             
+                var liste = recherche.Destinations.Where(x => x.Continent.Contains(destination));
+                ConsoleHelper.AfficherListe(liste, strategieAffichageGestionVoyages);
             }   
         }
 
-        private void Methode()
-        {
-
-        }
     }
 }

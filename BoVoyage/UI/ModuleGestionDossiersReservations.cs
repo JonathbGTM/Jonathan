@@ -120,7 +120,16 @@ namespace BoVoyage.UI
 
         public void RechercherReservation()
         {
+            ConsoleHelper.AfficherEntete("Rechercher une réservation");
 
+            var client = ConsoleSaisie.SaisirChaineObligatoire("Nom du client (réservation) recherché : ");
+
+            using (var recherche = Application.GetBaseDonnees())
+
+            {
+                var liste = recherche.Clients.Where(x => x.Nom.Contains(client));
+                ConsoleHelper.AfficherListe(liste, strategieAffichageGestionDossiersReservations);
+            }
         }
     }
 }
