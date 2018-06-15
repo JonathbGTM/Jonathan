@@ -134,6 +134,5 @@ namespace BoVoyage.UI
                 ConsoleHelper.AfficherListe(liste, strategieAffichageGestionVoyages);
             }   
         }
-
     }
 }

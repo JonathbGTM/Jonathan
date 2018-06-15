@@ -13,6 +13,7 @@ namespace BoVoyage.Dal
         public BaseDonnees(string connectionString = "Connexion")
             : base(connectionString)
         {
+
         }
 
         public DbSet<AgenceVoyage> AgencesVoyages { get; set; }

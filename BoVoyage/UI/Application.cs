@@ -58,9 +58,6 @@ namespace BoVoyage.UI
             {
                 FonctionAExecuter = () => Environment.Exit(1)
             });
-
-
-
         }
 
         public void Demarrer()
@@ -75,12 +72,11 @@ namespace BoVoyage.UI
         {
             return new BaseDonnees();
         }
+
         public static SqlConnection GetConnection()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["Connexion"].ConnectionString;
             return new SqlConnection(connectionString);
-        }
-
-       
+        }       
     }
 }

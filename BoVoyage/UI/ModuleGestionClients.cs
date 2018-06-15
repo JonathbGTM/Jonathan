@@ -119,8 +119,7 @@ namespace BoVoyage.UI
                     sup.Clients.Remove(client);
                     sup.SaveChanges(); 
                 }
-            }
-            
+            }       
         }
 
         private void RechercherClient()
@@ -134,7 +133,6 @@ namespace BoVoyage.UI
                 var liste = recherche.Clients.Where(x => x.Nom.Contains(nom));
                 ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
             }
-
         }
 
         private void ModifierClient()
@@ -175,9 +173,7 @@ namespace BoVoyage.UI
                 // Exécution de la requête
 
                 command.ExecuteNonQuery();
-
             }
-
         }   // J'ai tenté de réaliser cette méthode (Vincent) ... sans succès ..
     }
 }
