@@ -69,7 +69,21 @@ namespace BoVoyage.UI
 
         public void CreerReservation()
         {
+            ConsoleHelper.AfficherEntete("Nouvelle réservation");
 
+            var reservation = new DossierReservation
+            {              
+               NumeroUnique  = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro client : ")),           
+               PrixTotal = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le prix Total : ")),
+               NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro de la carte bancaire du client : "),           
+
+            };
+
+            using (var bd = Application.GetBaseDonnees())
+            {
+                bd.DossiersReservations.Add(reservation);
+                bd.SaveChanges();
+            }
         }
 
         public void ModifierReservation()
@@ -79,7 +93,29 @@ namespace BoVoyage.UI
 
         public void SupprimerReservation()
         {
+            ConsoleHelper.AfficherEntete("Supprimer une réservation");
+            var liste = Application.GetBaseDonnees().Clients.ToList();
 
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id de la réservation : ");
+
+            using (var sup = Application.GetBaseDonnees())
+            {
+                var reservation = sup.DossiersReservations.SingleOrDefault(x => x.Id == id);
+
+                if (liste.Count == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Aucune réservation pour le moment");
+                    return;
+                }
+
+                else
+                {
+
+                    sup.DossiersReservations.Remove(reservation);
+                    sup.SaveChanges();
+                }
+            }
         }
 
         public void RechercherReservation()

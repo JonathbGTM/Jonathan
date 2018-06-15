@@ -90,15 +90,27 @@ namespace BoVoyage.UI
         private void SupprimerVoyage()
         {
             ConsoleHelper.AfficherEntete("Supprimer un voyage");
-            var liste = new BaseDonnees().Voyages.ToList();
+            var liste = Application.GetBaseDonnees().Voyages.ToList();
 
-            var id = ConsoleSaisie.SaisirEntierObligatoire("ID du voyage à supprimer: ");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id du voyage : ");
 
             using (var sup = Application.GetBaseDonnees())
             {
-                var voyage = sup.Voyages.Single(x => x.Id == id);
-                sup.Voyages.Remove(voyage);
-                sup.SaveChanges();
+                var voyage = sup.Voyages.SingleOrDefault(x => x.Id == id);
+
+                if (liste.Count == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Aucun voyage pour le moment");
+                    return;
+                }
+
+                else
+                {
+
+                    sup.Voyages.Remove(voyage);
+                    sup.SaveChanges();
+                }
             }
         }
 
