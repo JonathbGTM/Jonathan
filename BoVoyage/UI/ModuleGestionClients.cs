@@ -100,7 +100,7 @@ namespace BoVoyage.UI
             ConsoleHelper.AfficherEntete("Supprimer un client");
             var liste = Application.GetBaseDonnees().Clients.ToList();
             ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
-
+         
             var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id du client : ");
 
             using (var sup = Application.GetBaseDonnees())
