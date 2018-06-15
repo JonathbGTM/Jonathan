@@ -12,7 +12,7 @@ namespace BoVoyage.Metiers
     {
         public int Id { get; set; }
         public int NumeroUnique { get; set; }
-        public string NumeroCarteBancaire { get; set; }
+        public int NumeroCarteBancaire { get; set; }
         public decimal PrixTotal { get; set; }
 
         [ForeignKey("IdVoyage")]

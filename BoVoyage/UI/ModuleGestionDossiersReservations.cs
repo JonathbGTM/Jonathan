@@ -75,7 +75,7 @@ namespace BoVoyage.UI
             {              
                NumeroUnique  = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro client : ")),           
                PrixTotal = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le prix Total : ")),
-               NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro de la carte bancaire du client : "),           
+               NumeroCarteBancaire = ConsoleSaisie.SaisirEntierObligatoire("Entrez le numéro de la carte bancaire du client : "),           
 
             };
 
