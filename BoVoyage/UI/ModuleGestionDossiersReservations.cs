@@ -74,11 +74,11 @@ namespace BoVoyage.UI
             var reservation = new DossierReservation { };
             {
                 reservation.IdVoyage = ConsoleSaisie.SaisirEntierObligatoire("IdVoyage :");
-                reservation.IdParticipant = ConsoleSaisie.SaisirEntierObligatoire("IdParticipant :");
                 reservation.IdClient = ConsoleSaisie.SaisirEntierObligatoire("IdClient :");
+                reservation.IdParticipant = ConsoleSaisie.SaisirEntierObligatoire("IdParticipant :");
                 reservation.NumeroUnique = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro client : "));
                 reservation.PrixTotal = int.Parse(ConsoleSaisie.SaisirChaineObligatoire("Entrez le prix Total : "));
-                reservation.NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Entrez le numéro de la carte bancaire du client : ");          
+                reservation.NumeroCarteBancaire = ConsoleSaisie.SaisirEntierObligatoire("Entrez le numéro de la carte bancaire du client : ");          
 
             };
 
