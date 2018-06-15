@@ -121,5 +121,10 @@ namespace BoVoyage.UI
                 var liste = recherche.Destinations.Where(x => x.Continent.Contains(destination));             
             }   
         }
+
+        private void Methode()
+        {
+
+        }
     }
 }
