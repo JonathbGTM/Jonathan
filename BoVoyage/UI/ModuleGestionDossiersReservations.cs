@@ -61,7 +61,10 @@ namespace BoVoyage.UI
 
         public void AfficherReservation()
         {
+            ConsoleHelper.AfficherEntete("Dossier de réservation");
 
+            var liste = Application.GetBaseDonnees().DossiersReservations.ToList();
+            ConsoleHelper.AfficherListe(liste, strategieAffichageGestionDossiersReservations);
         }
 
         public void CreerReservation()
