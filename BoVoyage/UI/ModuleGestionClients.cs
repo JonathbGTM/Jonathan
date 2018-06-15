@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoVoyage.Dal;
 using BoVoyage.Framework.UI;
 using BoVoyage.Metiers;
+
 namespace BoVoyage.UI
 {
     public class ModuleGestionClients
@@ -139,35 +141,43 @@ namespace BoVoyage.UI
         {
             ConsoleHelper.AfficherEntete("Modifier données client");
 
-            var nom = ConsoleSaisie.SaisirChaineObligatoire("Nom du client :");
+            var saisie = ConsoleSaisie.SaisirChaineObligatoire("Nom du client :");
 
             using (var recherche = Application.GetBaseDonnees())
 
             {
-                var liste = recherche.Clients.Where(x => x.Nom.Contains(nom));
+                var liste = recherche.Clients.Where(x => x.Nom.Contains(saisie));
                 ConsoleHelper.AfficherListe(liste, strategieAffichageGestionClients);
 
-                var client = new Client
-                {
-                    Civilite = ConsoleSaisie.SaisirChaineObligatoire("Entrez votre civilité : "),
-                    Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : "),
-                    Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : "),
-                    Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : "),
-                    Telephone = ConsoleSaisie.SaisirChaineObligatoire("Telephone : "),
-                    DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : "),
-                    Age = ConsoleSaisie.SaisirEntierObligatoire("Age : "),
-                    Email = ConsoleSaisie.SaisirChaineObligatoire("Email : ")
+                // Préparation de la requête SQL à exécuter
 
-                };
+                var client = new Client();
+                SqlConnection connection = new SqlConnection();
 
-                using (var bd = Application.GetBaseDonnees())
+                try
                 {
-                    bd.Clients.Add(client);
-                    bd.SaveChanges();
+                    // Connexion à la base de données
+                    connection.Open();
+
                 }
 
+                catch
+                {
+                    return;
+
+                }
+                                          
+                SqlCommand command = connection.CreateCommand();              
+                command.CommandText = "UPDATE client (Nom, Prenom, Adresse, Telephone, DateNaissance, Age) " +
+                "VALUES (@Nom, @Prenom, @Adresse, @Telephone, @DateNaissance, @Age FROM Clients WHERE client = ' ' ";
+             
+
+                // Exécution de la requête
+
+                command.ExecuteNonQuery();
+
             }
-       
-        }
+
+        }   // J'ai tenté de réaliser cette méthode (Vincent) ... sans succès ..
     }
 }
