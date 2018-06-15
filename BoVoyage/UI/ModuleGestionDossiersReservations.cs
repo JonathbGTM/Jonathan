@@ -96,7 +96,7 @@ namespace BoVoyage.UI
             ConsoleHelper.AfficherEntete("Supprimer une réservation");
             var liste = Application.GetBaseDonnees().DossiersReservations.ToList();
 
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id: ");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id du dossier de réservation : ");
 
             using (var sup = Application.GetBaseDonnees())
             {
