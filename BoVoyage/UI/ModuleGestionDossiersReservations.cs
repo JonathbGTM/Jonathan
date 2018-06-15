@@ -94,15 +94,27 @@ namespace BoVoyage.UI
         public void SupprimerReservation()
         {
             ConsoleHelper.AfficherEntete("Supprimer une réservation");
-            var liste = Application.GetBaseDonnees().DossiersReservations.ToList();
+            var liste = Application.GetBaseDonnees().Clients.ToList();
 
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id du dossier de réservation : ");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id de la réservation : ");
 
             using (var sup = Application.GetBaseDonnees())
             {
-                var reservation = sup.DossiersReservations.Single(x => x.Id == id);
-                sup.DossiersReservations.Remove(reservation);
-                sup.SaveChanges();
+                var reservation = sup.DossiersReservations.SingleOrDefault(x => x.Id == id);
+
+                if (liste.Count == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Aucune réservation pour le moment");
+                    return;
+                }
+
+                else
+                {
+
+                    sup.DossiersReservations.Remove(reservation);
+                    sup.SaveChanges();
+                }
             }
         }
 

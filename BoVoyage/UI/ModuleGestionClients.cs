@@ -93,19 +93,32 @@ namespace BoVoyage.UI
             }
         }
 
-        private void SupprimerClient()
+        public void SupprimerClient()
         {
             ConsoleHelper.AfficherEntete("Supprimer un client");
             var liste = Application.GetBaseDonnees().Clients.ToList();
 
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id: ");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Numero id du client : ");
 
             using (var sup = Application.GetBaseDonnees())
             {
-                var client = sup.Clients.Single(x => x.Id == id);
-                sup.Clients.Remove(client);
-                sup.SaveChanges();
+                var client = sup.Clients.SingleOrDefault(x => x.Id == id);
+
+                if (liste.Count == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Aucun client pour le moment");
+                    return;
+                }
+
+                else
+                {
+
+                    sup.Clients.Remove(client);
+                    sup.SaveChanges(); 
+                }
             }
+            
         }
 
         private void RechercherClient()
