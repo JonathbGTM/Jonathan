@@ -111,5 +111,10 @@ namespace BoVoyage.UI
         {
 
         }
+
+        private void Methode()
+        {
+
+        }
     }
 }
