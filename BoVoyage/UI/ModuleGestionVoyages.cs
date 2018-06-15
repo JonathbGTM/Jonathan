@@ -109,7 +109,17 @@ namespace BoVoyage.UI
 
         private void RechercherVoyage()
         {
+            ConsoleHelper.AfficherEntete("Rechercher un voyage");
 
+            var destination = ConsoleSaisie.SaisirChaineObligatoire("Destination du voyage recherché : ");
+            var dateAller = ConsoleSaisie.SaisirChaineObligatoire("Date aller du voyage recherché : ");
+            var dateRetour = ConsoleSaisie.SaisirChaineObligatoire("Date retour du voyage recherché : ");
+
+
+            using (var recherche = Application.GetBaseDonnees())
+            {
+                var liste = recherche.Destinations.Where(x => x.Continent.Contains(destination));             
+            }   
         }
 
         private void Methode()
