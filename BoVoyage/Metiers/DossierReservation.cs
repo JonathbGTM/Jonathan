@@ -14,7 +14,7 @@ namespace BoVoyage.Metiers
         public int NumeroUnique { get; set; }
         public int NumeroCarteBancaire { get; set; }
         public decimal PrixTotal { get; set; }
-
+        public bool Assurance { get; set; }
         [ForeignKey("IdVoyage")]
         public virtual Voyage Voyages { get; set; }
         public int IdVoyage { get; set; }
